@@ -1,0 +1,55 @@
+//need a UML diagram (don't forget name)
+//sample output(if done using GUI take pictures if not comment it out at the end of the program)
+
+
+
+import java.util.Scanner;
+import jsjf.LinkedStack;
+import jsjf.StackADT;
+import jsjf.*;
+
+public class Palindrome
+{
+	public static void main(String... args)
+	{
+		Scanner scan = new Scanner(System.in);
+		String again = null;
+		do 
+		{
+      
+      //need to create a queue object: CircularArrayQueue<character> 
+       CircularArrayQueue<Character> queue = new CircularArrayQueue<Character>();
+       LinkedStack<Character> stack = new LinkedStack<Character>(); 
+             //need another for loop to take characters off the stack and queue
+      
+			System.out.print("Please enter a string: "); // prompt user for string
+			String string = scan.nextLine();
+         
+         
+			for(Character c:string.toCharArray()) // go over every character and push it to the stack
+			{
+				stack.push(c); 
+            queue.enqueue(c);
+			}
+			String newString = "";
+         String newString2 = "";
+         
+         ///need to pop the chracters from the queue
+			while(!stack.isEmpty()) // if stack is not empty pop character and add it to the newString
+			{
+				newString += stack.pop();
+            newString2 += queue.dequeue();
+            
+            //pop the char from queue
+			}
+			if(newString2.equalsIgnoreCase(newString)) // compare both strings
+				System.out.println("The string is a palindrome"); // print string
+			else
+				System.out.println("The string is not a palindrome"); // print string
+			System.out.println("Enter 'Y' to try again."); // prompt user to continue or exit
+			again = scan.nextLine(); 
+		}
+		while(again.equalsIgnoreCase("Y")); // if user enters "y" then continue otherwise exit
+		scan.close(); 
+	}
+}
